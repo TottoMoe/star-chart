@@ -1,9 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// import schema from Appointment.js
-const appointmentSchema = require("./Appointment");
-
 // create userSchema
 const userSchema = new Schema(
   {
@@ -23,8 +20,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedAppointments to be an array of data that adheres to the appointmentSchema
-    savedAppointments: [appointmentSchema],
+    createdEvents: {
+      type: Schema.Types.ObjectId,
+      ref: "Event",
+    },
   },
   // set this to use virtual below
   {
@@ -49,11 +48,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `appointmentCount` with the number of saved appointments we have
-userSchema.virtual("appointmentCount").get(function () {
-  return this.savedAppointments.length;
-});
-
 const User = model("User", userSchema);
 
 module.exports = User;
+// // when we query a user, we'll also get another field called `appointmentCount` with the number of saved appointments we have
+// userSchema.virtual("eventCount").get(function () {
+//   return this.savedAppointments.length;
+// });
