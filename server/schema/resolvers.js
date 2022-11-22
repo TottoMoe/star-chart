@@ -67,6 +67,12 @@ const transformBooking = (booking) => {
 
 const resolvers = {
   Query: {
+    // get all the users
+    users: async () => {
+      // TODO: Do we also need to return the user's Events?
+      return await User.find({});
+    },
+
     // get all the events
     events: async () => {
       const events = await Event.find();
