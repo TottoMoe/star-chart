@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { signToken } = require("../utils/aut");
+const { signToken } = require("../utils/auth");
 const { User, Event, Booking } = require("../models");
 
 const events = async (eventIds) => {

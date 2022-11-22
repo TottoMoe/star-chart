@@ -10,9 +10,10 @@ const eventSchema = new Schema({
     required: true,
   },
 
-  dates: {
+  date: {
     type: Date,
     required: true,
+    // TODO: default date?
   },
 
   creator: {
@@ -21,4 +22,6 @@ const eventSchema = new Schema({
   },
 });
 
-module.exports = eventSchema;
+const Event = model("Event", eventSchema);
+
+module.exports = Event;
