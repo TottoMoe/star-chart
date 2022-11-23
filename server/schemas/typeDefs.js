@@ -21,7 +21,7 @@ const typeDefs = gql`
     password: String
     createdEvents: [Event!]
   }
-  type AuthData {
+  type Auth {
     userId: ID!
     token: String!
     tokenExpiration: Int!
