@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema({
   title: {
@@ -10,15 +10,18 @@ const eventSchema = new Schema({
     required: true,
   },
 
-  dates: {
+  date: {
     type: Date,
     required: true,
+    // TODO: default date?
   },
 
   creator: {
-    type: Schema.Type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
   },
 });
 
-module.exports = eventSchema;
+const Event = model("Event", eventSchema);
+
+module.exports = Event;

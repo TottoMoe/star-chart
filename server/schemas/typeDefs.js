@@ -21,7 +21,7 @@ const typeDefs = gql`
     password: String
     createdEvents: [Event!]
   }
-  type AuthData {
+  type Auth {
     userId: ID!
     token: String!
     tokenExpiration: Int!
@@ -29,28 +29,22 @@ const typeDefs = gql`
   input EventInput {
     title: String!
     description: String!
-    price: Float!
     date: String!
   }
   input UserInput {
     email: String!
     password: String!
   }
-  type RootQuery {
+  type Query {
     events: [Event!]!
     bookings: [Booking!]!
-    login(email: String!, password: String!): AuthData!
   }
-  type RootMutation {
+  type Mutation {
     createEvent(eventInput: EventInput): Event
     createUser(userInput: UserInput): User
     login(email: String!, password: String!): Auth
     bookEvent(eventId: ID!): Booking!
     cancelBooking(bookingId: ID!): Event!
-  }
-  schema {
-    query: RootQuery
-    mutation: RootMutation
   }
 `;
 
