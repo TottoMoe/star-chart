@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema({
   title: {
@@ -17,7 +17,7 @@ const eventSchema = new Schema({
   },
 
   creator: {
-    type: Schema.Type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
   },
 });
