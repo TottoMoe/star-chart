@@ -38,6 +38,7 @@ const typeDefs = gql`
   type Query {
     events: [Event!]!
     bookings: [Booking!]!
+    users: [User!]!
   }
   type Mutation {
     createEvent(eventInput: EventInput): Event

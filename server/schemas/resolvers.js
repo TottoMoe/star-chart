@@ -15,6 +15,30 @@ const resolvers = {
     bookings: async () => {
       return await Booking.find({}).populate("user");
     },
+    // users: async (parent, args, context) => {
+    //   if (context.users) {
+    //     const users = await User.findById(context.users._id).populate({
+    //       populate: 'event'
+    //     });
+    //     return users;
+    //   }
+    // users: async () => {
+    //   return await User.find({});
+    // },
+    users: async (parent, {user}) => {
+      return await User.findOne({user});
+    }
+    // user: (root, args, { request }, info) => {
+    //   const { id } = args
+
+    //   Authentication.checkSignedIn(request)
+
+    //   if (!mongoose.Types.ObjectId.isValid(id)) {
+    //     throw new UserInputError(`${id} is not a valid user ID.`)
+    //   }
+
+    //   return User.findById(id)
+    // }
   },
 
   Mutation: {

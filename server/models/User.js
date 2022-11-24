@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
 
 // create userSchema
 const userSchema = new Schema(
@@ -20,12 +21,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    createdEvents: [
+    createdEvents: 
       {
         type: Schema.Types.ObjectId,
         ref: "Event",
       },
-    ],
   },
   // set this to use virtual below
   {
@@ -52,7 +52,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 const User = model("User", userSchema);
 
-module.exports = User;
+module.exports = userSchema;
 // // when we query a user, we'll also get another field called `appointmentCount` with the number of saved appointments we have
 // userSchema.virtual("eventCount").get(function () {
 //   return this.savedAppointments.length;
