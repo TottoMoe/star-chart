@@ -4,6 +4,10 @@ const { User, Event, Booking } = require("../models");
 
 const resolvers = {
   Query: {
+    // Get a single event
+    event: async (parent, { eventId }) => {
+      return await Event.findOne({_id: eventId });
+    },
     // Get all events
     events: async () => {
       return await Event.find({}).populate("bookings").populate({
@@ -19,8 +23,20 @@ const resolvers = {
 
   Mutation: {
     // Create an event
-    createEvent: async (parent, { title, description, date, creator }) => {
-      const event = await Event.create({ title, description, date, creator });
+    // The `creator` argument must be an ID to an existing User reference
+    createEvent: async (parent, { title, description, date, creatorId }) => {
+      const event = await Event.create({ title, description, date, creatorId });
+
+      console.log("Created event: ", event)
+
+      // Add the event to the User's list of events
+      const creator = User.findByIdAndUpdate(
+        {_id: creatorId},
+        {$addToSet: {createdEvents: { _id: event.id }}},
+        {new: true, runValidators: true}
+      )
+
+      console.log("Updated User/creator: ", creator)
 
       const token = signToken(event);
       return { token, event };
