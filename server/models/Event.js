@@ -9,14 +9,12 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-
   date: {
     type: Date,
     required: true,
-    // TODO: default date?
+    get: (timestamp) => dateFormat(timestamp),
   },
-
-  creator: {
+  creatorId: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },

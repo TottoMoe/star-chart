@@ -36,6 +36,7 @@ const typeDefs = gql`
     password: String!
   }
   type Query {
+    event: Event!
     events: [Event!]!
     bookings: [Booking!]!
   }
