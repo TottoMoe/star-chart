@@ -11,7 +11,7 @@ const resolvers = {
     },
     // Get all Users
     users: async () => {
-      return await User.find({});
+      return await User.find({}).populate("createdEvents");
     },
     // Get a single event
     event: async (parent, { eventId }) => {
@@ -39,11 +39,12 @@ const resolvers = {
       console.log("Created event: ", event)
 
       // Add the event to the User's list of events
-      User.findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         {username: creator},
         {$addToSet: {createdEvents: { _id: event.id }}},
         {new: true, runValidators: true}
       )
+      console.log("Updated user: ", user);
 
       const token = signToken(event);
       return { token, event };
@@ -52,7 +53,7 @@ const resolvers = {
     createUser: async (parent, args, context) => {
       const user = await User.create(args);
 
-      if (!User) {
+      if (!user) {
         return console.error("Could not create user from args ", args);
       }
       const token = signToken(user);

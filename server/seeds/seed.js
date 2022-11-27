@@ -11,7 +11,6 @@ async function populateUserEvents (eventData) {
   for (const event of events) {
     const user = await User.findOneAndUpdate(
       { username: event.creator },
-      // { $addToSet: {createdEvents: { _id: event.id }}},
       { $addToSet: {createdEvents: {_id: event._id} } },
       { new: true, runValidators: true }
     )
