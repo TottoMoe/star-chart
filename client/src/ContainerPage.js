@@ -17,6 +17,7 @@ export default function ContainerPage(){
                 <Route path="/Home" element={<HomePage/>}/>
                 <Route path="/Login" element={<LoginForm/>}/>
                 <Route path="/events/:eventId" element={<SingleEvent/>}/>
+                <Route path="/users/:userId" element={<UserPage/>}/>
             </Routes>
             </div>
             <Footer/>
