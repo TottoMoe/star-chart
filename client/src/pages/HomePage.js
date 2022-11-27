@@ -13,7 +13,7 @@ import "react-calendar/dist/Calendar.css";
 export default function HomePage() {
   const [value, onChange] = useState(new Date());
   return (
-    <Container style={{ margin: "3rem", color: "black" }}>
+    <Container style={{ margin: "15rem", color: "black" }}>
       <Grid celled columns="equal" divided="vertically">
         <Grid.Column columns={2}>
           <Grid.Row width={5}>
@@ -22,7 +22,7 @@ export default function HomePage() {
           </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column floated="right" width={10}>
+        <Grid.Column floated="right" width={5}>
           <Calendar onChange={onChange} value={value} />
         </Grid.Column>
 
