@@ -4,7 +4,7 @@ import ContainerPage from "./ContainerPage";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <ContainerPage/>
     </div>
   );
