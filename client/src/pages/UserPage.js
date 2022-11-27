@@ -23,7 +23,7 @@ const Profile = () => {
     //how to add useid?
   });
 
-export default function HomePage() {
+const HomePage = () => {
   const [value, onChange] = useState(new Date());
   return (
     <main>
@@ -71,4 +71,6 @@ export default function HomePage() {
       </Container>
     </main>
   );
-}
+};
+
+export default HomePage;
