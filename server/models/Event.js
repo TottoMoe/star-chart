@@ -14,9 +14,9 @@ const eventSchema = new Schema({
     required: true,
     get: (timestamp) => dateFormat(timestamp),
   },
-  creatorId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+  creator: {
+    type: String,
+    required: true,
   },
 });
 

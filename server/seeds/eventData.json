@@ -1,0 +1,26 @@
+[
+	{
+		"title": "Event Title 1",
+		"description": "Event 1 Description",
+		"date": "1669507083722",
+		"creator": "Alberto-Harrison"
+	},
+	{
+		"title": "Event Title 2",
+		"description": "Event 2 Description",
+		"date": "1669507090508",
+		"creator": "Alberto-Harrison"
+	},
+	{
+		"title": "Event Title 3",
+		"description": "Event 3 Description",
+		"date": "1669507193240",
+		"creator": "Peyton-Olson"
+	},
+	{
+		"title": "Event Title 4",
+		"description": "Event 4 Description",
+		"date": "1669507244324",
+		"creator": "Peyton-Olson"
+	}
+]

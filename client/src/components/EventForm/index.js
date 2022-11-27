@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_EVENT } from '../../utils/mutations';
+import { CREATE_EVENT } from '../../utils/mutations';
 import { QUERY_EVENTS } from '../../utils/queries';
 
-const ThoughtForm = () => {
+const EventForm = () => {
   const [formState, setFormState] = useState({
-    thoughtText: '',
-    thoughtAuthor: '',
+    title: '',
+    description: '',
+    date: '',
   });
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_EVENT, {
-    update(cache, { data: { addThought } }) {
+  const [addEvent, { error }] = useMutation(CREATE_EVENT, {
+    update(cache, { data: { addEvent } }) {
       try {
-        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { events } = cache.readQuery({ query: QUERY_EVENTS });
 
         cache.writeQuery({
-          query: QUERY_THOUGHTS,
-          data: { thoughts: [addThought, ...thoughts] },
+          query: QUERY_EVENTS,
+          data: { events: [addEvent, ...events] },
         });
       } catch (e) {
         console.error(e);
@@ -30,13 +31,14 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const { _data } = await addEvent({
         variables: { ...formState },
       });
 
       setFormState({
-        thoughtText: '',
-        thoughtAuthor: '',
+        title: '',
+        description: '',
+        date: '',
       });
     } catch (err) {
       console.error(err);
@@ -56,7 +58,7 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>Schedule an new Appointment.</h3>
 
       <p
         className={`m-0 ${
@@ -72,9 +74,9 @@ const ThoughtForm = () => {
       >
         <div className="col-12">
           <textarea
-            name="thoughtText"
-            placeholder="Here's a new thought..."
-            value={formState.thoughtText}
+            name="title"
+            placeholder="Title of your Appointment..."
+            value={formState.title}
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
@@ -82,9 +84,18 @@ const ThoughtForm = () => {
         </div>
         <div className="col-12 col-lg-9">
           <input
-            name="thoughtAuthor"
-            placeholder="Add your name to get credit for the thought..."
-            value={formState.thoughtAuthor}
+            name="description"
+            placeholder="Brief description of your Appointment..."
+            value={formState.description}
+            className="form-input w-100"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-12 col-lg-9">
+          <input
+            name="date"
+            placeholder="Specify the start time of your appointment..."
+            value={formState.date}
             className="form-input w-100"
             onChange={handleChange}
           />
@@ -92,7 +103,7 @@ const ThoughtForm = () => {
 
         <div className="col-12 col-lg-3">
           <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Thought
+            Create new Appointment
           </button>
         </div>
         {error && (
@@ -105,4 +116,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default EventForm;
