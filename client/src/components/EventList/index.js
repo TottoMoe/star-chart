@@ -1,9 +1,9 @@
 import React from "react";
 
-const EventList = ({ appointments: events = [] }) => {
+const EventList = ({ events: events = [] }) => {
   console.log(events);
   if (!events.length) {
-    return <h3>No Appointments Yet</h3>;
+    return <h3>No Events Yet</h3>;
   }
 
   return (

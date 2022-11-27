@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from 'react-router-dom';
 import {
   Grid,
   Segment,
@@ -11,7 +12,16 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import EventList from '../components/EventList';
 import { events } from "../../../server/models/User";
+import Auth from '../utils/auth';
 
+
+const Profile = () => {
+  const { username: userParam } = useParams();
+
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+    //how to add useid?
+  });
 
 export default function HomePage() {
   const [value, onChange] = useState(new Date());
@@ -21,8 +31,9 @@ export default function HomePage() {
         <Grid celled columns="equal" divided="vertically">
           <Grid.Column columns={2}>
             <Grid.Row width={5}>
-              <Segment>User Name</Segment>
-              <Segment>UserID: 123</Segment>
+              <Segment>User Name: `${user.username}`</Segment>
+              //how to add useid?
+              <Segment>UserID: `${user.userid}`</Segment>
             </Grid.Row>
           </Grid.Column>
 
