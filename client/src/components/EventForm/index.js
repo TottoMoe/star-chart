@@ -31,8 +31,7 @@ const EventForm = () => {
     event.preventDefault();
 
     try {
-      const { _data } = await addEvent({
-        variables: { ...formState },
+      await addEvent({variables: { ...formState },
       });
 
       setFormState({
