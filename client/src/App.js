@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import EventForm from "./components/EventForm";
 import HomePage from "./pages/HomePage";
 import LoginForm from "./pages/Login";
+import UserPage from "./pages/UserPage";
 import SingleEvent from "./pages/SingleEvent";
 
 // *** Uncomment the following code blocks to add the Authentication
@@ -56,6 +57,7 @@ function App() {
               <Route path="/Login" element={<LoginForm />} />
               <Route path="/EventForm" element={<EventForm />} />
               <Route path="/events/:eventId" element={<SingleEvent />} />
+              <Route path="/users/:userId" element={<UserPage/>}/>
             </Routes>
           </div>
           <Footer />
