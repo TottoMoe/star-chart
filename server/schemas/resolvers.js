@@ -6,8 +6,8 @@ const { User, Event } = require("../models");
 const resolvers = {
   Query: {
     // Get a single User
-    user: async (parent, { userId }) => {
-      return await User.findOne({_id: userId });
+    user: async (parent, { username }) => {
+      return await User.findOne({ username }).populate("createdEvents");
     },
     // Get all Users
     users: async () => {
@@ -53,7 +53,7 @@ const resolvers = {
       const user = await User.create(args);
 
       if (!User) {
-        return console.error("No User found!");
+        return console.error("Could not create user from args ", args);
       }
       const token = signToken(user);
       return { token, user };

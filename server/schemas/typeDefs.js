@@ -20,7 +20,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String
-    createdEvents: [Event!]
+    createdEvents: [Event]!
   }
   type Auth {
     userId: ID!
@@ -38,11 +38,11 @@ const typeDefs = gql`
     password: String!
   }
   type Query {
-    event: Event!
-    events: [Event!]!
+    event: Event
+    events: [Event]
     # bookings: [Booking!]!
-    user: User!
-    users: [User!]!
+    user(username: String!): User
+    users: [User]
   }
   type Mutation {
     createEvent(eventInput: EventInput): Event

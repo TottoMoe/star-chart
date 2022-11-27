@@ -20,15 +20,24 @@ async function populateUserEvents (eventData) {
 }
 
 db.once('open', async () => {
-  // clean database
-  await User.deleteMany({});
-  await Event.deleteMany({});
 
-  // bulk create each model
-  await User.insertMany(userData);
   await Event.insertMany(eventData);
 
   await populateUserEvents(eventData);
+
+  try {
+    await User.deleteMany({});
+    await Event.deleteMany({});
+
+    await User.insertMany(userData);
+    await Event.insertMany(eventData);
+
+    await populateUserEvents(eventData);
+
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 
   console.log('all done!');
   process.exit(0);
