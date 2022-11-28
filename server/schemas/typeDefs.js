@@ -42,14 +42,17 @@ const typeDefs = gql`
     event(eventId: ID!): Event
     userEvents(username: String!): [Event]
     # bookings: [Booking!]!
-    user(username: String!): User
+    // user(username: String!): User
+    me: User
     users: [User]
   }
   type Mutation {
     # createUser(input: UserInput): User
     # createUser(username: String!, email: String!, password: String!): User
-    createUser(username: String!, email: String!, password: String!): Auth
     # createEvent(eventInput: EventInput): Event
+    # bookEvent(eventId: ID!): Booking!
+    # cancelBooking(bookingId: ID!): Event!
+    createUser(username: String!, email: String!, password: String!): Auth
     createEvent(
       title: String!
       description: String!
@@ -57,8 +60,6 @@ const typeDefs = gql`
       creator: String!
     ): Event
     login(email: String!, password: String!): Auth
-    # bookEvent(eventId: ID!): Booking!
-    # cancelBooking(bookingId: ID!): Event!
   }
 `;
 
