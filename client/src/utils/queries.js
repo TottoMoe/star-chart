@@ -16,6 +16,22 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERS = gql`
+  query users {
+    users {
+      _id
+      username
+      email
+      createdEvents {
+        _id
+        title
+        description
+        date
+      }
+    }
+  }
+`;
+
 // Get an Event based on the event ID
 export const QUERY_SINGLE_EVENT = gql`
   query getSingleEvent($eventId: ID!) {

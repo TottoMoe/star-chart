@@ -1,17 +1,17 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import EventList from "../components/EventList";
-import { QUERY_EVENTS } from "../utils/queries";
+import UserList from "../components/UserList";
+import { QUERY_USERS } from "../utils/queries";
 
-const Events = () => {
-  const { loading, data } = useQuery(QUERY_EVENTS);
-  const events = data?.events || [];
+const Users = () => {
+  const { loading, data } = useQuery(QUERY_USERS);
+  const users = data?.users || [];
 
   if (loading) {
     return <div>Loading...</div>;
   }
   console.log("Data: ", data);
-  console.log("Events: ", events);
+  console.log("users: ", users);
 
   return (
     <main>
@@ -27,7 +27,7 @@ const Events = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <EventList events={events} title="Current Appointments." />
+            <UserList users={users} title="Current Appointments." />
           )}
         </div>
       </div>
@@ -35,4 +35,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default Users;
