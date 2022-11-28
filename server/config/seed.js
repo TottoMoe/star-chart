@@ -4,11 +4,7 @@ const { User, Booking, Event } = require('../models');
 db.once('open', async () => {
   // clean database
   await Booking.deleteMany();
-
-  const booking = await Booking.insertMany([
-    {    }
-  ]);
-
+  await User.deleteMany();
   await Event.deleteMany();
 
   const event = await Event.insertMany([
@@ -38,9 +34,6 @@ db.once('open', async () => {
     }
   ]);
 
-  await populateUserEvents(Event);
-
-  await User.deleteMany();
 
   await User.create([
     {
@@ -54,8 +47,10 @@ db.once('open', async () => {
       password: 'asdfjkl;'
     }
 ]);
+  
+await populateUserEvents();
 
-async function populateUserEvents (Event) {
+async function populateUserEvents () {
   // console.log("event: ", event);
   const events = await Event.find({});
   console.log("Events: ", events);
@@ -68,13 +63,6 @@ async function populateUserEvents (Event) {
     console.log("Updated User: ", user);
   };
 }
-
-  // await User.create({
-  //   username: 'Peyton-Olson',
-  //   email: 'peyton@gmail.com',
-  //   password: 'asdfjkl;'
-  // });
-
 
   console.log('all done!');
   process.exit(0);
