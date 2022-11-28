@@ -38,8 +38,9 @@ const typeDefs = gql`
     password: String!
   }
   type Query {
+    events: [Event]
     event(eventId: ID!): Event
-    events(username: String!): [Event]
+    userEvents(username: String!): [Event]
     # bookings: [Booking!]!
     user(username: String!): User
     users: [User]

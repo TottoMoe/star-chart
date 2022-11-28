@@ -1,0 +1,51 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Grid,
+  Container,
+  Popup,
+  Button,
+  Card,
+} from "semantic-ui-react";
+
+const UserList = ({ users }) => {
+  console.log(users);
+  if (!users.length) {
+    return <h3>No users Yet</h3>;
+  }
+
+  return (
+    <Container style={{ Height: "100%", padding: "1em 0em" }}>
+      <Card
+        verticalAlign="middle"
+        centered
+        fluid
+        style={{ background: "#0d0d0d", marginTop: "10rem" }}
+      >
+        <Grid celled columns="equal" divided="vertically">
+          <Grid.Row>
+            {users &&
+              users.map((user) => (
+                <Grid.Column width={5}>
+                  <Popup
+                    trigger={<Button>{user.username}</Button>}
+                    flowing
+                    hoverable
+                  >
+                    <Grid.Column textAlign="center">
+                      <Link to={`/users/${user.username}`}>
+                        <Button color="blue">See Events</Button>
+                      </Link>
+                      <Button color="red">Delete Scheduler</Button>
+                    </Grid.Column>
+                  </Popup>
+                </Grid.Column>
+              ))}
+          </Grid.Row>
+        </Grid>
+      </Card>
+    </Container>
+  );
+};
+
+export default UserList;

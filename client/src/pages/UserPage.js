@@ -1,39 +1,40 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
+import { useQuery } from "@apollo/client";
 import {
   Grid,
   Segment,
   Container,
-  Popup,
-  Button,
-  Header,
 } from "semantic-ui-react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import EventList from '../components/EventList';
-import { events } from "../../../server/models/User";
-import Auth from '../utils/auth';
+import { QUERY_USER } from "../utils/queries";
 
 
-const Profile = () => {
-  const { username: userParam } = useParams();
-
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-    //how to add useid?
-  });
-
-const HomePage = () => {
+const UserPage = () => {
   const [value, onChange] = useState(new Date());
+  const { username } = useParams();
+  // Uncomment the following two lines if you wish to query the current user by default
+  // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  //   variables: { username: userParam },
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: username },
+  });
+  const user = data?.user || {};
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  console.log("query data: ", data);
   return (
     <main>
       <Container style={{ margin: "3rem", color: "black" }}>
         <Grid celled columns="equal" divided="vertically">
           <Grid.Column columns={2}>
             <Grid.Row width={5}>
-              <Segment>User Name: `${user.username}`</Segment>
-              //how to add useid?
-              <Segment>UserID: `${user.userid}`</Segment>
+              <Segment>User Name: {user.username}</Segment>
+              <Segment>UserID: {user._id}</Segment>
             </Grid.Row>
           </Grid.Column>
 
@@ -42,28 +43,8 @@ const HomePage = () => {
           </Grid.Column>
 
           <Grid.Row>
-            <Grid.Column width={5}>
-              <Popup
-                trigger={<Button>Appointment 1 @8:00AM</Button>}
-                flowing
-                hoverable
-              >
-                <Grid.Column textAlign="center">
-                  <Header as="h4">Meeting name</Header>
-                  <p>This is a meeting example description</p>
-                  <Button color="green">Reschedule</Button>
-                  <Button color="red">Cancel</Button>
-                </Grid.Column>
-              </Popup>
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <Segment>Appointment 2</Segment>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
             <EventList
-            events={events}
+            events={user.createdEvents}
             title = "Event title..."
             />
           </Grid.Row>
@@ -73,4 +54,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default UserPage;

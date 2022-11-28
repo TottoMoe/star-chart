@@ -1,37 +1,46 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Grid,
+  Popup,
+  Button,
+  Header,
+} from "semantic-ui-react";
 
-const EventList = ({ events: events = [] }) => {
+const EventList = ({ events }) => {
   console.log(events);
   if (!events.length) {
     return <h3>No Events Yet</h3>;
   }
 
   return (
-    <>
-      <h3
-        className="p-5 display-inline-block"
-        style={{ borderBottom: "1px dotted #1a1a1a" }}
-      >
-        Appointments
-      </h3>
-      <div className="flex-row my-4">
+    <Grid celled columns="equal" divided="vertically">
+      <Grid.Row>
         {events &&
           events.map((event) => (
-            <div key={event._id} className="col-12 mb-3 pb-3">
-              <div className="p-3 bg-dark text-light">
-                <h5 className="card-header">
-                  An anonymous user commented{" "}
-                  <span style={{ fontSize: "0.825rem" }}>on {event.date}</span>
-                </h5>
-                <p className="card-body">{event.title}</p>
-                <p className="card-body">{event.description}</p>
-                <p className="card-body">{event.date}</p>
-                <p className="card-body">{event.creatorId}</p>
-              </div>
-            </div>
+            <Grid.Column width={5}>
+              <Popup
+                trigger={
+                  <Button>
+                    {event.title} {event.date}
+                  </Button>
+                }
+                flowing
+                hoverable
+              >
+                <Grid.Column textAlign="center">
+                  <Link to={`/users/${event.creator}`}> 
+                  <Header as="h4">Creator: {event.creator}</Header>
+                  </Link>
+                  <p>{event.description}</p>
+                  <Button color="green">Reschedule</Button>
+                  <Button color="red">Cancel</Button>
+                </Grid.Column>
+              </Popup>
+            </Grid.Column>
           ))}
-      </div>
-    </>
+      </Grid.Row>
+    </Grid>
   );
 };
 

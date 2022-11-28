@@ -13,8 +13,10 @@ import EventForm from "./components/EventForm";
 import HomePage from "./pages/HomePage";
 import LoginForm from "./pages/Login";
 import SignupForm from "./pages/SignupForm";
-// import UserPage from "./pages/UserPage";
+import UserPage from "./pages/UserPage";
 import SingleEvent from "./pages/SingleEvent";
+import EventsPage from "./pages/EventsPage";
+import UsersPage from "./pages/UsersPage";
 
 // *** Uncomment the following code blocks to add the Authentication
 //     middleware to the routes
@@ -57,9 +59,11 @@ function App() {
               <Route path="/Home" element={<HomePage />} />
               <Route path="/Login" element={<LoginForm />} />
               <Route path="/SignupForm" element={<SignupForm />} />
+              <Route path="/Events" element={<EventsPage />} />
               <Route path="/EventForm" element={<EventForm />} />
               <Route path="/events/:eventId" element={<SingleEvent />} />
-              {/* <Route path="/users/:userId" element={<UserPage/>}/> */}
+              <Route path="/Users" element={<UsersPage />} />
+              <Route path="/users/:username" element={<UserPage/>}/>
             </Routes>
           </div>
           <Footer />
