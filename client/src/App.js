@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import EventForm from "./components/EventForm";
 import HomePage from "./pages/HomePage";
 import LoginForm from "./pages/Login";
+import SignupForm from "./pages/SignupForm";
 // import UserPage from "./pages/UserPage";
 import SingleEvent from "./pages/SingleEvent";
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/Home" element={<HomePage />} />
               <Route path="/Login" element={<LoginForm />} />
+              <Route path="/SignupForm" element={<SignupForm />} />
               <Route path="/EventForm" element={<EventForm />} />
               <Route path="/events/:eventId" element={<SingleEvent />} />
               {/* <Route path="/users/:userId" element={<UserPage/>}/> */}
