@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import LoginForm from "./pages/Login";
 // import UserPage from "./pages/UserPage";
 import SingleEvent from "./pages/SingleEvent";
+import EventsPage from "./pages/EventsPage";
 
 // *** Uncomment the following code blocks to add the Authentication
 //     middleware to the routes
@@ -55,6 +56,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/Home" element={<HomePage />} />
               <Route path="/Login" element={<LoginForm />} />
+              <Route path="/Events" element={<EventsPage />} />
               <Route path="/EventForm" element={<EventForm />} />
               <Route path="/events/:eventId" element={<SingleEvent />} />
               {/* <Route path="/users/:userId" element={<UserPage/>}/> */}

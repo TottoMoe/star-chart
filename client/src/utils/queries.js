@@ -41,3 +41,16 @@ export const QUERY_EVENTS = gql`
     }
   }
 `;
+
+// Get an Event based on the event ID
+export const QUERY_USER_EVENTS = gql`
+  query getUserEvents ($username: String!) {
+    userEvents(username: $username) {
+      _id
+      title
+      description
+      date
+      creator
+    }
+  }
+`;

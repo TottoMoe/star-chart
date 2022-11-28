@@ -16,11 +16,12 @@ import Auth from '../utils/auth';
 
 
 const Profile = () => {
-  const { username: userParam } = useParams();
-
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-    //how to add useid?
+  const { username } = useParams();
+  // Uncomment the following two lines if you wish to query the current user by default
+  // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  //   variables: { username: userParam },
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: username },
   });
 
 const HomePage = () => {

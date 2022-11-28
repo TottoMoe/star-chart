@@ -1,15 +1,15 @@
 import React from "react";
 
-const EventList = ({ events: events = [] }) => {
+const EventList = ({ events }) => {
   console.log(events);
   if (!events.length) {
     return <h3>No Events Yet</h3>;
   }
 
   return (
-    <>
+    <div>
       <h3
-        className="p-5 display-inline-block"
+        className=""
         style={{ borderBottom: "1px dotted #1a1a1a" }}
       >
         Appointments
@@ -17,21 +17,21 @@ const EventList = ({ events: events = [] }) => {
       <div className="flex-row my-4">
         {events &&
           events.map((event) => (
-            <div key={event._id} className="col-12 mb-3 pb-3">
-              <div className="p-3 bg-dark text-light">
-                <h5 className="card-header">
+            <div key={event._id} className="">
+              <div className="">
+                <h5 className="">
                   An anonymous user commented{" "}
                   <span style={{ fontSize: "0.825rem" }}>on {event.date}</span>
                 </h5>
-                <p className="card-body">{event.title}</p>
-                <p className="card-body">{event.description}</p>
-                <p className="card-body">{event.date}</p>
-                <p className="card-body">{event.creatorId}</p>
+                <p className="">{event.title}</p>
+                <p className="">{event.description}</p>
+                <p className="">{event.date}</p>
+                <p className="">{event.creatorId}</p>
               </div>
             </div>
           ))}
       </div>
-    </>
+    </div>
   );
 };
 
