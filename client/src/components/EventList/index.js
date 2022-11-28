@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Grid,
   Popup,
@@ -28,7 +29,9 @@ const EventList = ({ events }) => {
                 hoverable
               >
                 <Grid.Column textAlign="center">
+                  <Link to={`/users/${event.creator}`}> 
                   <Header as="h4">Creator: {event.creator}</Header>
+                  </Link>
                   <p>{event.description}</p>
                   <Button color="green">Reschedule</Button>
                   <Button color="red">Cancel</Button>

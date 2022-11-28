@@ -5,7 +5,6 @@ import {
   Container,
   Popup,
   Button,
-  Header,
   Card,
 } from "semantic-ui-react";
 
@@ -34,10 +33,8 @@ const UserList = ({ users }) => {
                     hoverable
                   >
                     <Grid.Column textAlign="center">
-                      <Header as="h4">ID: {user._id}</Header>
-                      <p>{user.email}</p>
                       <Link to={`/users/${user.username}`}>
-                        <Button color="green">Scheduler's Events</Button>
+                        <Button color="blue">See Events</Button>
                       </Link>
                       <Button color="red">Delete Scheduler</Button>
                     </Grid.Column>
