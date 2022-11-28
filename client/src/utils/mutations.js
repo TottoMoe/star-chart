@@ -24,12 +24,12 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_EVENT = gql`
+export const CREATE_EVENT = gql`
   mutation createEvent(
     $title: String!
     $description: String!
     $date: String!
-    $userId: ID!
+    $creator: String!
   ) {
     createEvent(
       title: $title
@@ -40,9 +40,7 @@ export const ADD_EVENT = gql`
       title
       description
       date
-      creator {
-        _id
-      }
+      creator
     }
   }
 `;

@@ -18,15 +18,26 @@ export const QUERY_USER = gql`
 
 // Get an Event based on the event ID
 export const QUERY_SINGLE_EVENT = gql`
-  query getSingleThought($eventId: ID!) {
+  query getSingleEvent($eventId: ID!) {
     event(eventId: $eventId) {
       _id
       title
       description
       date
-      creator {
-        username
-      }
+      creator
+    }
+  }
+`;
+
+// Get an Event based on the event ID
+export const QUERY_EVENTS = gql`
+  query getEvents {
+    events {
+      _id
+      title
+      description
+      date
+      creator
     }
   }
 `;

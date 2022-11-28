@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const dateFormat = require('../utils/dateFormat');
 
 const eventSchema = new Schema({
   title: {
@@ -14,9 +15,9 @@ const eventSchema = new Schema({
     required: true,
     get: (timestamp) => dateFormat(timestamp),
   },
-  creatorId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+  creator: {
+    type: String,
+    required: true,
   },
 });
 
