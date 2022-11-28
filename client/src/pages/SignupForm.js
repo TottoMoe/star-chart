@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Segment,
-  // Modal,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Segment, Modal } from "semantic-ui-react";
 
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
-import Auth from '../utils/auth';
+import { ADD_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
+const SignupForm = () => {
+  // set initial form state
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  // set state for form validation
   const [validated] = useState(false);
-  // const [showAlert, setShowAlert] = useState(false);
-  const [login, { error }] = useMutation(LOGIN_USER);
 
+  // set state to add user
+  // const [showModal, setShowModal] = useState(false);
+  const [addUser] = useMutation(ADD_USER);
+
+  // call handleInputChange function to collect the input data
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -26,6 +29,7 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // check if form has everything 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -33,11 +37,11 @@ const LoginForm = () => {
     }
 
     try {
-      const { data } = await login({
+      const { data } = await addUser({
         variables: { ...userFormData },
       });
 
-      Auth.login(data.login.token);
+      Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
       // setShowModal(true);
@@ -48,13 +52,13 @@ const LoginForm = () => {
       email: "",
       password: "",
     });
+  };
 
-  }
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="blue" textAlign="center">
-          Log-in to your account
+          Sign-up to your account
         </Header>
         <Form
           size="large"
@@ -70,6 +74,17 @@ const LoginForm = () => {
             Something went wrong with your signup!
           </Modal> */}
           <Segment stacked>
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              type="text"
+              placeholder="Username"
+              name="username"
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+            />
             <Form.Input
               fluid
               icon="mail"
@@ -97,10 +112,16 @@ const LoginForm = () => {
               color="blue"
               fluid
               size="large"
-              disabled={!(userFormData.email && userFormData.password)}
+              disabled={
+                !(
+                  userFormData.username &&
+                  userFormData.email &&
+                  userFormData.password
+                )
+              }
               type="submit"
             >
-              Login
+              Submit
             </Button>
           </Segment>
         </Form>
@@ -108,5 +129,4 @@ const LoginForm = () => {
     </Grid>
   );
 };
-
-export default LoginForm;
+export default SignupForm;

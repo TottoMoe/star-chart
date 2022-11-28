@@ -17,6 +17,10 @@ const NavBar = () => {
           <Link to="/Login">
             <Menu.Item as="a">Login</Menu.Item>
           </Link>
+             
+          <Link to="/SignupForm">
+            <Menu.Item as="a">Signup</Menu.Item>
+          </Link>
           
           <Link to="/Users">
             <Menu.Item as="a">Users</Menu.Item>
