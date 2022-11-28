@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Grid,
   Container,
@@ -36,7 +37,9 @@ const UserList = ({ users }) => {
                       <Header as="h4">ID: {user._id}</Header>
                       <p>{user.email}</p>
                       {/* TODO: Determine how to go to the user's page */}
-                      <Button color="green">Scheduler's Events</Button>
+                      <Link to={`/users/${user.username}`}>
+                        <Button color="green">Scheduler's Events</Button>
+                      </Link>
                       <Button color="red">Delete Scheduler</Button>
                     </Grid.Column>
                   </Popup>

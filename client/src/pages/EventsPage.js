@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import EventList from "../components/EventList";
 import { QUERY_EVENTS } from "../utils/queries";
+import { Container, Card } from "semantic-ui-react";
 
 const Events = () => {
   const { loading, data } = useQuery(QUERY_EVENTS);
@@ -15,22 +16,15 @@ const Events = () => {
 
   return (
     <main>
-      <div className="">
-        {/* TODO: Uncomment for Event Form */}
-        {/* <div
-          className=""
-          style={{ border: '1px dotted #1a1a1a' }}
-        >
-          <EventForm />
-        </div> */}
-        <div className="">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <EventList events={events} title="Current Appointments." />
-          )}
-        </div>
-      </div>
+      <Container style={{ Height: "100%", padding: "1em 0em" }}>
+        <Card
+          verticalAlign="middle"
+          centered
+          fluid
+          style={{ background: "#0d0d0d", marginTop: "10rem" }}
+        ></Card>
+          <EventList events={events} title="Current Appointments." />
+      </Container>
     </main>
   );
 };

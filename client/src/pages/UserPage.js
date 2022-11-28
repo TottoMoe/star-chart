@@ -5,16 +5,11 @@ import {
   Grid,
   Segment,
   Container,
-  Popup,
-  Button,
-  Header,
 } from "semantic-ui-react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import EventList from '../components/EventList';
-import { events } from "../../../server/models/User";
 import { QUERY_USER } from "../utils/queries";
-// import Auth from '../utils/auth';
 
 
 const UserPage = () => {
@@ -38,8 +33,8 @@ const UserPage = () => {
         <Grid celled columns="equal" divided="vertically">
           <Grid.Column columns={2}>
             <Grid.Row width={5}>
-              <Segment>User Name: `${user.username}`</Segment>
-              <Segment>UserID: `${user._id}`</Segment>
+              <Segment>User Name: {user.username}</Segment>
+              <Segment>UserID: {user._id}</Segment>
             </Grid.Row>
           </Grid.Column>
 
