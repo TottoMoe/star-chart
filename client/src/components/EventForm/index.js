@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-
-import { CREATE_EVENT } from '../../utils/mutations';
-import { QUERY_EVENTS } from '../../utils/queries';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
+import { CREATE_EVENT } from "../../utils/mutations";
+import { QUERY_EVENTS } from "../../utils/queries";
 
 const EventForm = () => {
   const [formState, setFormState] = useState({
-    title: '',
-    description: '',
-    date: '',
+    title: "",
+    description: "",
+    date: "",
   });
-  
+
   const [addEvent, { error }] = useMutation(CREATE_EVENT, {
     update(cache, { data: { addEvent } }) {
       try {
@@ -30,13 +30,12 @@ const EventForm = () => {
     event.preventDefault();
 
     try {
-      await addEvent({variables: { ...formState },
-      });
+      await addEvent({ variables: { ...formState } });
 
       setFormState({
-        title: '',
-        description: '',
-        date: '',
+        title: "",
+        description: "",
+        date: "",
       });
     } catch (err) {
       console.error(err);
@@ -47,62 +46,63 @@ const EventForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
+    if (name === "thoughtText" && value.length <= 280) {
       setFormState({ ...formState, [name]: value });
-    } else if (name !== 'thoughtText') {
+    } else if (name !== "thoughtText") {
       setFormState({ ...formState, [name]: value });
     }
   };
 
   return (
-    <div>
-      <h3>Schedule an new Appointment.</h3>
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="blue" textAlign="center">
+          Make an Appointment
+        </Header>
+        <Form size="large" onSubmit={handleFormSubmit}>
+          <Segment stacked>
+            <Form.Input
+              fluid
+              icon="pencil alternate"
+              type="text"
+              iconPosition="left"
+              name="title"
+              placeholder="Title of your Appointment..."
+              value={formState.title}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              fluid
+              icon="book"
+              type="text"
+              iconPosition="left"
+              name="description"
+              placeholder="Brief description of your Appointment..."
+              value={formState.description}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              fluid
+              type="text"
+              icon="calendar alternate"
+              iconPosition="left"
+              name="date"
+              placeholder="Specify the start time of your appointment"
+              value={formState.date}
+              onChange={handleChange}
+              required
+            />
 
-      <form
-        className=""
-        onSubmit={handleFormSubmit}
-      >
-        <div className="">
-          <textarea
-            name="title"
-            placeholder="Title of your Appointment..."
-            value={formState.title}
-            className="form-input"
-            style={{ lineHeight: '1.5' }}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <div className="">
-          <input
-            name="description"
-            placeholder="Brief description of your Appointment..."
-            value={formState.description}
-            className="form-input"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="">
-          <input
-            name="date"
-            placeholder="Specify the start time of your appointment..."
-            value={formState.date}
-            className="form-input w-100"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="">
-          <button className="btn btn-primary btn-block" type="submit">
-            Create new Appointment
-          </button>
-        </div>
-        {error && (
-          <div className="">
-            Something went wrong...
-          </div>
-        )}
-      </form>
-    </div>
+            <Button color="blue" fluid size="large" type="submit">
+              Create new Appointment
+            </Button>
+          </Segment>
+        </Form>
+      </Grid.Column>
+      {error && <div>Something went wrong...</div>}
+    </Grid>
   );
 };
 
