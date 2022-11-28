@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Segment, Modal } from "semantic-ui-react";
 
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
@@ -17,6 +17,7 @@ const SignupForm = () => {
   const [validated] = useState(false);
 
   // set state to add user
+  // const [showModal, setShowModal] = useState(false);
   const [addUser] = useMutation(ADD_USER);
 
   // call handleInputChange function to collect the input data
@@ -28,7 +29,7 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+    // check if form has everything 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -43,6 +44,7 @@ const SignupForm = () => {
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
+      // setShowModal(true);
     }
 
     setUserFormData({
@@ -64,6 +66,13 @@ const SignupForm = () => {
           validated={validated}
           onSubmit={handleFormSubmit}
         >
+          {/* <Modal
+            dismissible
+            onClose={() => setShowModal(false)}
+            show={showModal}
+          >
+            Something went wrong with your signup!
+          </Modal> */}
           <Segment stacked>
             <Form.Input
               fluid
