@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const bookingSchema = new Schema(
   {
@@ -14,4 +14,6 @@ const bookingSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = bookingSchema;
+const Booking = model("Booking", bookingSchema);
+
+module.exports = Booking;
