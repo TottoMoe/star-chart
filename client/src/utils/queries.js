@@ -70,3 +70,20 @@ export const QUERY_USER_EVENTS = gql`
     }
   }
 `;
+
+
+// export const GET_ME = gql`
+//   {
+//     me {
+//       _id
+//       username
+//       email
+//       createdEvents {
+//         _id
+//         title
+//         description
+//         date
+//       }
+//     }
+//   }
+// `;

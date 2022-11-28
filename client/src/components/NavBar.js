@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Auth from '../utils/auth';
 
 const NavBar = () => {
   return (
@@ -14,14 +15,22 @@ const NavBar = () => {
             </Menu.Item>
           </Link>
 
-          <Link to="/Login">
-            <Menu.Item as="a">Login</Menu.Item>
-          </Link>
-             
+          {Auth.loggedIn() ? (
+            <Link to="#">
+              <Menu.Item as="a" onClick={Auth.logout}>
+                Logout
+              </Menu.Item>
+            </Link>
+          ) : (
+            <Link to="/Login">
+              <Menu.Item as="a">Login</Menu.Item>
+            </Link>
+          )}
+
           <Link to="/SignupForm">
             <Menu.Item as="a">Signup</Menu.Item>
           </Link>
-          
+
           <Link to="/Users">
             <Menu.Item as="a">Users</Menu.Item>
           </Link>

@@ -1,5 +1,6 @@
 const express = require('express');
 // Import the ApolloServer class
+const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require('./utils/auth')
 
@@ -18,7 +19,7 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//-----Do we need this part?----//
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
@@ -26,8 +27,6 @@ if (process.env.NODE_ENV === "production") {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
-//----- end -------------------//
-
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {

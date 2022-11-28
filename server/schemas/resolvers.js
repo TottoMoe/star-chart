@@ -6,16 +6,25 @@ const { User, Event } = require("../models");
 const resolvers = {
   Query: {
     // Get a single User
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("createdEvents");
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const foundUser = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
+        return foundUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
+    // user: async (parent, { username }) => {
+    //   return User.findOne({ username }).populate("createdEvents");
+    // },
     // Get all Users
     users: async () => {
       return User.find({}).populate("createdEvents");
     },
     // Get a single event
     event: async (parent, { eventId }) => {
-      return Event.findOne({_id: eventId });
+      return Event.findOne({ _id: eventId });
     },
     // Get all events
     events: async () => {
@@ -26,8 +35,7 @@ const resolvers = {
     },
     // Get all events for a specific user
     userEvents: async (parent, { username }) => {
-      return Event.find(
-        { creator: username });
+      return Event.find({ creator: username });
     },
     // Get all bookings from one event
     // bookings: async () => {
@@ -41,14 +49,14 @@ const resolvers = {
     createEvent: async (parent, { title, description, date, creator }) => {
       const event = await Event.create({ title, description, date, creator });
 
-      console.log("Created event: ", event)
+      console.log("Created event: ", event);
 
       // Add the event to the User's list of events
       const user = await User.findOneAndUpdate(
-        {username: creator},
-        {$addToSet: {createdEvents: { _id: event.id }}},
-        {new: true, runValidators: true}
-      )
+        { username: creator },
+        { $addToSet: { createdEvents: { _id: event.id } } },
+        { new: true, runValidators: true }
+      );
       console.log("Updated user: ", user);
 
       const token = signToken(event);
@@ -79,25 +87,25 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-  //   // add a booking to the event
-  //   bookEvent: async (parent, { eventId, booking }) => {
-  //     return Event.findOneandUpdate(
-  //       { _id: eventId },
-  //       { $addToSet: { bookings: booking } },
-  //       { new: true, runValidators: true }
-  //     );
-  //   },
-  //   // remove the booking from the event
-  //   cancelBooking: async (parent, args, context) => {
-  //     const booking = await Booking.findById(args.bookingId).populate("event");
-  //     await Booking.deleteOne({ _id: args.bookingId });
+    //   // add a booking to the event
+    //   bookEvent: async (parent, { eventId, booking }) => {
+    //     return Event.findOneandUpdate(
+    //       { _id: eventId },
+    //       { $addToSet: { bookings: booking } },
+    //       { new: true, runValidators: true }
+    //     );
+    //   },
+    //   // remove the booking from the event
+    //   cancelBooking: async (parent, args, context) => {
+    //     const booking = await Booking.findById(args.bookingId).populate("event");
+    //     await Booking.deleteOne({ _id: args.bookingId });
 
-  //     return Event.findOneandUpdate(
-  //       { _id: eventId },
-  //       { $pull: { bookings: booking } },
-  //       { new: true }
-  //     );
-  //   },
+    //     return Event.findOneandUpdate(
+    //       { _id: eventId },
+    //       { $pull: { bookings: booking } },
+    //       { new: true }
+    //     );
+    //   },
   },
 };
 
