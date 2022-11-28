@@ -36,7 +36,6 @@ const UserList = ({ users }) => {
                     <Grid.Column textAlign="center">
                       <Header as="h4">ID: {user._id}</Header>
                       <p>{user.email}</p>
-                      {/* TODO: Determine how to go to the user's page */}
                       <Link to={`/users/${user.username}`}>
                         <Button color="green">Scheduler's Events</Button>
                       </Link>
