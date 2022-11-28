@@ -29,7 +29,7 @@ const LoginForm = () => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
-      event.stopPropagation();
+      // event.stopPropagation();
     }
 
     try {
@@ -44,7 +44,6 @@ const LoginForm = () => {
     }
 
     setUserFormData({
-      username: "",
       email: "",
       password: "",
     });
