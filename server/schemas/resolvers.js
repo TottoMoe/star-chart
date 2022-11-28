@@ -7,22 +7,22 @@ const resolvers = {
   Query: {
     // Get a single User
     user: async (parent, { username }) => {
-      return await User.findOne({ username }).populate("createdEvents");
+      return User.findOne({ username }).populate("createdEvents");
     },
     // Get all Users
     users: async () => {
-      return await User.find({}).populate("createdEvents");
+      return User.find({}).populate("createdEvents");
     },
     // Get a single event
     event: async (parent, { eventId }) => {
-      return await Event.findOne({_id: eventId });
+      return Event.findOne({_id: eventId });
     },
     // Get all events
     events: async () => {
       // return await Event.find({}).populate("bookings").populate({
       //   path: "bookings",
       // });
-      return await Event.find({});
+      return Event.find({});
     },
     // Get all events for a specific user
     userEvents: async (parent, { username }) => {
