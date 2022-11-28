@@ -9,6 +9,9 @@ const Events = () => {
   const { loading, data } = useQuery(QUERY_EVENTS);
   const events = data?.events || [];
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   console.log("Data: ", data);
   console.log("Events: ", events);
 

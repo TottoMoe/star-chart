@@ -26,7 +26,7 @@ const resolvers = {
     },
     // Get all events for a specific user
     userEvents: async (parent, { username }) => {
-      return await Event.find(
+      return Event.find(
         { creator: username });
     },
     // Get all bookings from one event
