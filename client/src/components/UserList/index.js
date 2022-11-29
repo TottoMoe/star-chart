@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Grid,
   Container,
-  Popup,
+  // Popup,
   Button,
   Card,
 } from "semantic-ui-react";
@@ -27,18 +27,18 @@ const UserList = ({ users }) => {
             {users &&
               users.map((user) => (
                 <Grid.Column width={5}>
-                  <Popup
+                  {/* for future development <Popup
                     trigger={<Button>{user.username}</Button>}
                     flowing
                     hoverable
-                  >
+                  > */}
                     <Grid.Column textAlign="center">
                       <Link to={`/users/${user.username}`}>
-                        <Button color="blue">See Events</Button>
+                        <Button color="blue">{user.username}</Button>
                       </Link>
-                      <Button color="red">Delete Scheduler</Button>
+                      {/* <Button color="red">Delete Scheduler</Button> */}
                     </Grid.Column>
-                  </Popup>
+                  {/* </Popup> */}
                 </Grid.Column>
               ))}
           </Grid.Row>
