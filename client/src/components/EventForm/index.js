@@ -9,6 +9,7 @@ const EventForm = () => {
     title: "",
     description: "",
     date: "",
+    creator:"",
   });
 
   const [addEvent, { error }] = useMutation(CREATE_EVENT, {
@@ -36,6 +37,7 @@ const EventForm = () => {
         title: "",
         description: "",
         date: "",
+        creator:"",
       });
     } catch (err) {
       console.error(err);
@@ -61,6 +63,17 @@ const EventForm = () => {
         </Header>
         <Form size="large" onSubmit={handleFormSubmit}>
           <Segment stacked>
+          <Form.Input
+              fluid
+              type="text"
+              icon="user"
+              iconPosition="left"
+              name="creator"
+              placeholder="what is your name?"
+              value={formState.creator}
+              onChange={handleChange}
+              required
+            />
             <Form.Input
               fluid
               icon="pencil alternate"
