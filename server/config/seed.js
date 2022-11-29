@@ -31,7 +31,7 @@ db.once('open', async () => {
       description:'Event 4 Description',
       date: '1669507244324',
       creator:'Patrick-Leo'
-    },,
+    },
     {
       title:'Event Title 5',
       description:'Event 5 Description',
@@ -97,7 +97,7 @@ db.once('open', async () => {
       description:'Event 15 Description',
       date: '1669690385827',
       creator:'kris-Olson'
-    }
+    },
     {
       title:'Event Title 16',
       description:'Event 16 Description',
