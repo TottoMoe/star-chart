@@ -5,7 +5,7 @@ import {
   Grid,
   Header,
   Segment,
-  // Modal,
+  Message
 } from "semantic-ui-react";
 
 import { useMutation } from "@apollo/client";
@@ -103,6 +103,9 @@ const LoginForm = () => {
             </Button>
           </Segment>
         </Form>
+        <Message>
+        New Here? <a href='#'>Sign Up</a>
+      </Message>
       </Grid.Column>
     </Grid>
   );
