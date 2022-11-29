@@ -56,7 +56,7 @@ function App() {
           <NavBar />
           <div className="container">
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<LoginForm />} />
               <Route path="/Home" element={<HomePage />} />
               <Route path="/Login" element={<LoginForm />} />
               <Route path="/SignupForm" element={<SignupForm />} />
@@ -64,7 +64,7 @@ function App() {
               <Route path="/EventForm" element={<EventForm />} />
               <Route path="/events/:eventId" element={<SingleEvent />} />
               <Route path="/Users" element={<UsersPage />} />
-              <Route path="/users/:username" element={<UserPage/>}/>
+              <Route path="/users/:username" element={<UserPage />} />
             </Routes>
           </div>
           <Footer />
