@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -104,8 +105,11 @@ const LoginForm = () => {
           </Segment>
         </Form>
         <Message>
-        New Here? <a href='#'>Sign Up</a>
-      </Message>
+          New Here?{" "}
+          <Link to="/SignupForm" as="a">
+            Sign Up
+          </Link>
+        </Message>
       </Grid.Column>
     </Grid>
   );
