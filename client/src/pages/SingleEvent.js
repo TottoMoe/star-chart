@@ -1,6 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import {
+  Grid,
+  Segment,
+  Container,
+} from "semantic-ui-react";
 import { QUERY_SINGLE_EVENT } from "../utils/queries";
 
 const SingleEvent = () => {
@@ -19,25 +24,19 @@ const SingleEvent = () => {
   }
   console.log("query data: ", data);
   return (
-    <div className="">
-      <h3 className="">
-        {event.creator} <br />
-        <span style={{ fontSize: "1rem" }}>had this event on {event.date}</span>
-      </h3>
-      <div className="">
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: "1.5rem",
-            fontStyle: "italic",
-            border: "2px dotted #1a1a1a",
-            lineHeight: "1.5",
-          }}
-        >
-          {event.description}
-        </blockquote>
-      </div>
-    </div>
+    <main>
+      <Container style={{ margin: "3rem", color: "black" }}>
+        <Grid celled columns="equal" divided="vertically">
+          <Grid.Column columns={2}>
+            <Grid.Row width={5}>
+              <Segment>{event.title}</Segment>
+              <Segment>Description: {event.description}</Segment>
+            </Grid.Row>
+          </Grid.Column>
+
+        </Grid>
+      </Container>
+    </main>
   );
 };
 
