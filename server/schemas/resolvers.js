@@ -15,9 +15,9 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    // user: async (parent, { username }) => {
-    //   return User.findOne({ username }).populate("createdEvents");
-    // },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate("createdEvents");
+    },
     // Get all Users
     users: async () => {
       return User.find({}).populate("createdEvents");
