@@ -26,22 +26,37 @@ const NavBar = () => {
               <Menu.Item as="a">Login</Menu.Item>
             </Link>
           )}
+          {Auth.loggedIn() ? (
+            <div />
+          ) : (
+            <Link to="/SignupForm">
+              <Menu.Item as="a">Signup</Menu.Item>
+            </Link>
+          )}
 
-          <Link to="/SignupForm">
-            <Menu.Item as="a">Signup</Menu.Item>
-          </Link>
+          {Auth.loggedIn() ? (
+            <Link to="/Users">
+              <Menu.Item as="a">Users</Menu.Item>
+            </Link>
+          ) : (
+            <div />
+          )}
 
-          <Link to="/Users">
-            <Menu.Item as="a">Users</Menu.Item>
-          </Link>
+          {Auth.loggedIn() ? (
+            <Link to="/Events">
+              <Menu.Item as="a">Events</Menu.Item>
+            </Link>
+          ) : (
+            <div />
+          )}
 
-          <Link to="/Events">
-            <Menu.Item as="a">Events</Menu.Item>
-          </Link>
-
-          <Link to="/EventForm">
-            <Menu.Item as="a">Create Event</Menu.Item>
-          </Link>
+          {Auth.loggedIn() ? (
+            <Link to="/EventForm">
+              <Menu.Item as="a">Create Event</Menu.Item>
+            </Link>
+          ) : (
+            <div />
+          )}
         </Container>
       </Menu>
     </div>
