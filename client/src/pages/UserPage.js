@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import {
   Grid,
@@ -8,9 +9,8 @@ import {
 } from "semantic-ui-react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import EventList from '../components/EventList';
+import EventList from "../components/EventList";
 import { QUERY_USER } from "../utils/queries";
-
 
 const UserPage = () => {
   const [value, onChange] = useState(new Date());
@@ -43,17 +43,15 @@ const UserPage = () => {
             </Grid.Row>
           </Grid.Column>
 
-          <Grid.Column floated="right" width={10}>
-            <Calendar onChange={onChange} value={value} />
-          </Grid.Column>
+            <Grid.Column floated="right" width={10}>
+              <Calendar onChange={onChange} value={value} />
+            </Grid.Column>
 
-          <Grid.Row>
-            <EventList
-            events={user.createdEvents}
-            title = "Event title..."
-            />
-          </Grid.Row>
-        </Grid>
+            <Grid.Row>
+              <EventList events={user.createdEvents} title="Event title..." />
+            </Grid.Row>
+          </Grid>
+        </Card>
       </Container>
     </main>
   );
