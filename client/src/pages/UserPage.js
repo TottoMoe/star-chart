@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import {
   Grid,
-  Segment,
   Container,
+  Header
 } from "semantic-ui-react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -28,13 +28,18 @@ const UserPage = () => {
   }
   console.log("query data: ", data);
   return (
-    <main>
-      <Container style={{ margin: "3rem", color: "black" }}>
-        <Grid celled columns="equal" divided="vertically">
+    <main style={{Height: "100%", padding: "1em 0em"}}>
+      <Container style={{ background: "#0d0d0d",  margin: "10rem", color: "black",  }}>
+        <Grid centered celled columns="equal" divided="vertically">
           <Grid.Column columns={2}>
             <Grid.Row width={5}>
-              <Segment>User Name: {user.username}</Segment>
-              <Segment>UserID: {user._id}</Segment>
+            <Header as="h2" color="blue" textAlign="center">
+            {user.username}
+            </Header>
+            <Header as="h3" color="blue" textAlign="center">
+            ID:{user._id}
+            </Header>
+              
             </Grid.Row>
           </Grid.Column>
 

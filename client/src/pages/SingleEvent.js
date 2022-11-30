@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import {
   Grid,
-  Segment,
   Container,
+  Header
 } from "semantic-ui-react";
 import { QUERY_SINGLE_EVENT } from "../utils/queries";
 
@@ -24,13 +24,17 @@ const SingleEvent = () => {
   }
   console.log("query data: ", data);
   return (
-    <main>
-      <Container style={{ margin: "3rem", color: "black" }}>
+    <main style={{Height: "100%", padding: "1em 0em"}}>
+      <Container style={{ background: "#0d0d0d",margin: "10rem", color: "black" }}>
         <Grid celled columns="equal" divided="vertically">
           <Grid.Column columns={2}>
             <Grid.Row width={5}>
-              <Segment>{event.title}</Segment>
-              <Segment>Description: {event.description}</Segment>
+            <Header as="h2" color="blue" textAlign="center">
+            Title: {event.title}
+            </Header>
+            <Header as="h2" color="blue" textAlign="center">
+             Description: {event.description}            
+            </Header>
             </Grid.Row>
           </Grid.Column>
 

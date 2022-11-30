@@ -5,11 +5,15 @@ import { Grid, Popup, Button, Header } from "semantic-ui-react";
 const EventList = ({ events }) => {
   console.log(events);
   if (!events.length) {
-    return <h3>No Events Yet</h3>;
+    return <h3 style={{color: "white"}}>No Events Yet</h3>;
   }
 
   return (
-    <Grid celled columns="equal" divided="vertically">
+    <div>
+      <Header as="h2" color="blue" textAlign="center">
+          All Current Events
+      </Header>
+    <Grid celled style={{background: "#0d0d0d"}} columns="equal" divided="vertically">
       <Grid.Row>
         {events &&
           events.map((event) => (
@@ -39,6 +43,7 @@ const EventList = ({ events }) => {
           ))}
       </Grid.Row>
     </Grid>
+    </div>
   );
 };
 
