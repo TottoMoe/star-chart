@@ -25,7 +25,7 @@ const SingleEvent = () => {
   console.log("query data: ", data);
   return (
     <main>
-      <Container style={{ margin: "3rem", color: "black" }}>
+      <Container style={{ marginTop: "10rem", backgroundColor: "black", margin: "3rem", color: "black" }}>
         <Grid celled columns="equal" divided="vertically">
           <Grid.Column columns={2}>
             <Grid.Row width={5}>
@@ -33,7 +33,6 @@ const SingleEvent = () => {
               <Segment>Description: {event.description}</Segment>
             </Grid.Row>
           </Grid.Column>
-
         </Grid>
       </Container>
     </main>

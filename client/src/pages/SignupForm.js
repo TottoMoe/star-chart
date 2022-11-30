@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Grid, Header, Segment, Modal } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";

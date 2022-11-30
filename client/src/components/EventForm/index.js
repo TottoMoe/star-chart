@@ -44,15 +44,9 @@ const EventForm = () => {
     }
   };
 
-  // TODO: Not sure how much of this we want to keep
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    if (name === "thoughtText" && value.length <= 280) {
-      setFormState({ ...formState, [name]: value });
-    } else if (name !== "thoughtText") {
-      setFormState({ ...formState, [name]: value });
-    }
+    setFormState({ ...formState, [name]: value });
   };
 
   return (
@@ -69,7 +63,7 @@ const EventForm = () => {
               icon="user"
               iconPosition="left"
               name="creator"
-              placeholder="what is your name?"
+              placeholder="Username for Scheduler..."
               value={formState.creator}
               onChange={handleChange}
               required

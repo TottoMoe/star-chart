@@ -6,9 +6,6 @@ import {
   Grid,
   Segment,
   Container,
-  Popup,
-  Button,
-  Header,
   Card,
 } from "semantic-ui-react";
 import Calendar from "react-calendar";
