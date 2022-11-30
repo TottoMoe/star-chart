@@ -6,6 +6,7 @@ import {
   // Popup,
   Button,
   Card,
+  Header
 } from "semantic-ui-react";
 
 const UserList = ({ users }) => {
@@ -15,12 +16,16 @@ const UserList = ({ users }) => {
   }
 
   return (
-    <Container style={{ Height: "100%", padding: "1em 0em" }}>
+    <div>
+    <Header as="h2" color="blue" textAlign="center" style={{ Height: "100%", padding: "5em 0em" }}>
+          All Users
+    </Header>
+    <Container>
       <Card
         verticalAlign="middle"
         centered
         fluid
-        style={{ background: "#0d0d0d", marginTop: "10rem" }}
+        style={{ background: "#0d0d0d"}}
       >
         <Grid celled columns="equal" divided="vertically">
           <Grid.Row>
@@ -45,6 +50,7 @@ const UserList = ({ users }) => {
         </Grid>
       </Card>
     </Container>
+    </div>
   );
 };
 

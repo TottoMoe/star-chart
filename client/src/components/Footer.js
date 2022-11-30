@@ -8,7 +8,7 @@ const footerStyle = {
     display: "flex",
     justifyContent: "center",
     alignItems:"center",
-    marginTop: "54vh",
+    marginTop: "100vh",
     color: "white"
 }
 

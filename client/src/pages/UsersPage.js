@@ -2,7 +2,6 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import UserList from "../components/UserList";
 import { QUERY_USERS } from "../utils/queries";
-
 const Users = () => {
   const { loading, data } = useQuery(QUERY_USERS);
   const users = data?.users || [];
@@ -14,16 +13,9 @@ const Users = () => {
   console.log("users: ", users);
 
   return (
-    <main>
-      <div className="">
-        {/* TODO: Uncomment for Event Form */}
-        {/* <div
-          className=""
-          style={{ border: '1px dotted #1a1a1a' }}
-        >
-          <EventForm />
-        </div> */}
-        <div className="">
+    <div>
+    
+        <div>
           {loading ? (
             <div>Loading...</div>
           ) : (
@@ -31,7 +23,7 @@ const Users = () => {
           )}
         </div>
       </div>
-    </main>
+    
   );
 };
 
