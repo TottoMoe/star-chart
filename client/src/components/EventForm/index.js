@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import { CREATE_EVENT } from "../../utils/mutations";
-import { QUERY_EVENTS } from "../../utils/queries";
+// import { QUERY_EVENTS } from "../../utils/queries";
 
 const EventForm = () => {
   const [formState, setFormState] = useState({
@@ -12,20 +12,23 @@ const EventForm = () => {
     creator:"",
   });
 
-  const [addEvent, { error }] = useMutation(CREATE_EVENT, {
-    update(cache, { data: { addEvent } }) {
-      try {
-        const { events } = cache.readQuery({ query: QUERY_EVENTS });
+  // const [addEvent, { error }] = useMutation(CREATE_EVENT, {
+  //   update(cache, { data: { addEvent } }) {
+  //     try {
+  //       const { events } = cache.readQuery({ query: QUERY_EVENTS });
 
-        cache.writeQuery({
-          query: QUERY_EVENTS,
-          data: { events: [addEvent, ...events] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  });
+  //       console.log("event", events)
+  //       console.log("ADD event", addEvent);
+  //       cache.writeQuery({
+  //         query: QUERY_EVENTS,
+  //         data: { events: [addEvent, ...events] },
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   },
+  // });
+  const [addEvent, { error }] = useMutation(CREATE_EVENT)
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
