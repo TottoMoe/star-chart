@@ -17,7 +17,7 @@ const EventList = ({ events }) => {
       <Grid.Row>
         {events &&
           events.map((event) => (
-            <Grid.Column width={5}>
+            <Grid.Column key={event._id} width={5}>
               <Popup
                 trigger={
                   <Button>

@@ -59,8 +59,8 @@ const resolvers = {
       );
       console.log("Updated user: ", user);
 
-      const token = signToken(event);
-      return { token, event };
+      // const token = signToken(event);
+      return event;
     },
     // Create an user
     createUser: async (parent, args, context) => {
