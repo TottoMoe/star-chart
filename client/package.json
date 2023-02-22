@@ -1,6 +1,9 @@
 {
   "name": "star-chart",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=16.0.0 <17.0.0"
+  },
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
@@ -22,8 +25,8 @@
     "jwt-decode": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start --openssl-legacy-provider start",
+    "build": "react-scripts build --openssl-legacy-provider build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
